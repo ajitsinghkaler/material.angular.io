@@ -1,14 +1,12 @@
 import {
   Component,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
   NgModule,
   OnInit,
   OnDestroy,
-  HostBinding,
 } from '@angular/core';
 import {StyleManager} from '../style-manager';
-import {ThemeStorage, DocsSiteTheme} from './theme-storage/theme-storage';
+import {DocsSiteTheme, ThemeStorage} from './theme-storage/theme-storage';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
@@ -17,18 +15,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {map, filter} from 'rxjs/operators';
-
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'theme-picker',
   templateUrl: 'theme-picker.html',
   styleUrls: ['theme-picker.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ThemePicker implements OnInit, OnDestroy {
-  @HostBinding('aria-hidden') role = 'true';
   private _queryParamSubscription = Subscription.EMPTY;
   currentTheme: DocsSiteTheme;
 
@@ -36,12 +31,14 @@ export class ThemePicker implements OnInit, OnDestroy {
     {
       primary: '#673AB7',
       accent: '#FFC107',
+      displayName: 'Deep Purple / Amber',
       name: 'deeppurple-amber',
       isDark: false,
     },
     {
       primary: '#3F51B5',
       accent: '#E91E63',
+      displayName: 'Indigo / Pink',
       name: 'indigo-pink',
       isDark: false,
       isDefault: true,
@@ -49,12 +46,14 @@ export class ThemePicker implements OnInit, OnDestroy {
     {
       primary: '#E91E63',
       accent: '#607D8B',
+      displayName: 'Pink / Blue-grey',
       name: 'pink-bluegrey',
       isDark: true,
     },
     {
       primary: '#9C27B0',
       accent: '#4CAF50',
+      displayName: 'Purple / Green',
       name: 'purple-green',
       isDark: true,
     },
@@ -66,21 +65,21 @@ export class ThemePicker implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute) {
     const themeName = this._themeStorage.getStoredThemeName();
     if (themeName) {
-      this.installTheme(themeName);
+      this.onThemeSelection(themeName);
     }
   }
 
   ngOnInit() {
     this._queryParamSubscription = this._activatedRoute.queryParamMap
       .pipe(map((params: ParamMap) => params.get('theme')), filter(Boolean))
-      .subscribe((themeName: string) => this.installTheme(themeName));
+      .subscribe((themeName: string) => this.onThemeSelection(themeName));
   }
 
   ngOnDestroy() {
     this._queryParamSubscription.unsubscribe();
   }
 
-  installTheme(themeName: string) {
+  onThemeSelection(themeName: string) {
     const theme = this.themes.find(currentTheme => currentTheme.name === themeName);
 
     if (!theme) {
