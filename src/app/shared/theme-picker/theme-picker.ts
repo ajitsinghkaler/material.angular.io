@@ -5,6 +5,7 @@ import {
   NgModule,
   OnInit,
   OnDestroy,
+  HostBinding,
 } from '@angular/core';
 import {StyleManager} from '../style-manager';
 import {ThemeStorage, DocsSiteTheme} from './theme-storage/theme-storage';
@@ -25,9 +26,9 @@ import {map, filter} from 'rxjs/operators';
   styleUrls: ['theme-picker.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  host: {'aria-hidden': 'true'},
 })
 export class ThemePicker implements OnInit, OnDestroy {
+  @HostBinding('aria-hidden') role = 'true';
   private _queryParamSubscription = Subscription.EMPTY;
   currentTheme: DocsSiteTheme;
 
