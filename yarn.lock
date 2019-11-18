@@ -185,13 +185,9 @@
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-9.0.0-rc.1.tgz#4685c2fad9f2c0dc8e6e26f9f351eab3b6448cab"
   integrity sha512-L2y3o+eGRKU/BrY+V00sKNo3TBbL5kGmG96H57570N+WURDg9+xnzqsctJutUdVZkA2iM8Pa4f1ndoQoWlyZHg==
 
-"@angular/components-examples@angular/material2-docs-content":
-  version "9.0.0-rc.1-sha-a5cad10cf"
-  resolved "https://codeload.github.com/angular/material2-docs-content/tar.gz/b57fdf72f04faef3eeed66a773b6c7e97b0722e3"
-
 "@angular/components-examples@angular/material2-docs-content#master":
-  version "9.0.0-rc.1-sha-3a10c2cfe"
-  resolved "https://codeload.github.com/angular/material2-docs-content/tar.gz/186e074e41c800274bcb5eeb4d3d548721745bbe"
+  version "9.0.0-rc.2-sha-bc58e79f0"
+  resolved "https://codeload.github.com/angular/material2-docs-content/tar.gz/56b0de3db3962c9ce1f63515db1b3c9b48e5cd7b"
 
 "@angular/core@^9.0.0-rc.1":
   version "9.0.0-rc.1"
